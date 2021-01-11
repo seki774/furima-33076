@@ -18,38 +18,39 @@
 ### Association
 
 * has_many :goods
-* belongs_to :purchase_histories
+* has_many :purchase_histories
 
 ## goods table
 
 | Column                              | Type       | Options           |
 |-------------------------------------|------------|-------------------|
 | goods_name                          | string     | null: false       |
-| goods_price                         | string     | null: false       |
+| goods_price                         | integer     | null: false       |
 | goods_text                          | text       | null: false       |
 | category_id                         | integer    | null: false       |
 | good_state_id                       | integer    | null: false       |
 | delivery_fee_id                     | integer    | null: false       |
 | ship_area_id                        | integer    | null: false       |
 | day_id                              | integer    | null: false       |
-| users                               | references | foreign_key: true |
+| user                                | references | foreign_key: true |
 
 
 ### Association
 
 - belongs_to :user
-- belongs_to :purchase_history
+- has_one :purchase_history
 
 ## addresses table
 
-| Column      | Type       | Options           |
-|-------------|------------|-------------------|
-| postal_code | string     | null: false       |
-| ship_area_id | integer   | null: false       |
-| bill        | string     | null: false       |
-| city        | string     | null: false       |
-| house_number| string     | null: false       |
-| phone_number| string     | null: false       |
+| Column               | Type       | Options           |
+|----------------------|------------|-------------------|
+| postal_code          | string     | null: false       |
+| ship_area_id         | integer    | null: false       |
+| bill                 | string     | null: false       |
+| city                 | string     | null: false       |
+| house_number         | string     | null: false       |
+| phone_number         | string     | null: false       |
+| purchase_history     | references | foreign_key: true |
 
 
 ### Association
@@ -65,5 +66,6 @@
 
 ### Association
 
-- has_many :users
-- has_many :goods
+- belongs_to :users
+- belongs_to :goods
+- belongs_to :addresses
