@@ -46,7 +46,7 @@
 |----------------------|------------|-------------------|
 | postal_code          | string     | null: false       |
 | ship_area_id         | integer    | null: false       |
-| bill                 | string     | null: false       |
+| bill                 | string     |                   |
 | city                 | string     | null: false       |
 | house_number         | string     | null: false       |
 | phone_number         | string     | null: false       |
@@ -66,6 +66,6 @@
 
 ### Association
 
-- belongs_to :users
-- belongs_to :goods
-- belongs_to :addresses
+- belongs_to :user
+- belongs_to :good
+- has_one    :addresses
