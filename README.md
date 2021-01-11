@@ -1,24 +1,57 @@
-# README
+# DB 設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## user table
 
-Things you may want to cover:
+| Column             | Type                | Options                 |
+|--------------------|---------------------|-------------------------|
+| email              | string              | null: false             |
+| password           | string              | null: false             |
+| nickname           | string              | null: false             |
 
-* Ruby version
+### Association
 
-* System dependencies
+* has_many :goods
+* belongs_to :address
 
-* Configuration
+## goods table
 
-* Database creation
+| Column                              | Type       | Options           |
+|-------------------------------------|------------|-------------------|
+| goods name                          | string     | null: false       |
+| goods text                          | text       | null: false       |
+| category                            | string     | null: false       |
+| goods state                         | string     | null: false |
+| delivery fee                        | string     | null: false       |
+| ship area                           | string     | null: false       |
+| days                                | string     | null: false       |
 
-* Database initialization
 
-* How to run the test suite
+### Association
 
-* Services (job queues, cache servers, search engines, etc.)
+- belongs_to :user
+- has_one :address
 
-* Deployment instructions
+## address table
 
-* ...
+| Column      | Type       | Options           |
+|-------------|------------|-------------------|
+| postal code | string     | null: false       |
+| prefecture  | string     | null: false       |
+| city        | string     | null: false       |
+| house number| string     | null: false       |
+| phone number| string     | null: false       |
+
+### Association
+
+- belongs_to :goods
+- belongs_to :user
+
+## purchase history table
+
+| Column      | Type       | Options           |
+|-------------|------------|-------------------|
+| buyer       |  string    | foreign_key: true |
+
+### Association
+
+- belongs_to :
