@@ -7,6 +7,8 @@
 | email              | string              | null: false             |
 | password           | string              | null: false             |
 | nickname           | string              | null: false             |
+| confirmation password           | string              | null: false             |
+
 
 ### Association
 
@@ -20,10 +22,10 @@
 | goods name                          | string     | null: false       |
 | goods text                          | text       | null: false       |
 | category                            | string     | null: false       |
-| goods state                         | string     | null: false |
-| delivery fee                        | string     | null: false       |
-| ship area                           | string     | null: false       |
-| days                                | string     | null: false       |
+| goods state                         | integer    | null: false       |
+| delivery fee                        | integer    | null: false       |
+| ship area                           | integer    | null: false       |
+| days                                | integer    | null: false       |
 
 
 ### Association
@@ -45,13 +47,16 @@
 
 - belongs_to :goods
 - belongs_to :user
+- has_one :purchase history
 
 ## purchase history table
 
 | Column      | Type       | Options           |
 |-------------|------------|-------------------|
 | buyer       |  string    | foreign_key: true |
+| user        | references | foreign_key: true |
+| goods       | references | foreign_key: true |
 
 ### Association
 
-- belongs_to :
+- belongs_to :address
