@@ -68,4 +68,4 @@
 
 - belongs_to :user
 - belongs_to :good
-- has_one    :addresses
+- has_one    :address
