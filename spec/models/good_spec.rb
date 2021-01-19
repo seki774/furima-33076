@@ -61,7 +61,7 @@ describe User do
       end
 
       it 'goods_priceが300以下であれば登録できない' do
-        @good.goods_price = '100'
+        @good.goods_price = '299'
         @good.valid?
         expect(@good.errors.full_messages).to include('Goods price は300以下にならない')
       end
@@ -70,6 +70,32 @@ describe User do
         @good.goods_price = '５００００'
         @good.valid?
         expect(@good.errors.full_messages).to include('Goods price 半角数字を使用してください')
+      end
+
+      it 'category_idが0以外では登録できない' do
+        @good.category_id = '0'
+        @good.valid?
+        expect(@good.errors.full_messages).to include("Category must be other than 0")
+      end
+      it 'good_state_idが0以外では登録できない' do
+        @good.good_state_id = '0'
+        @good.valid?
+        expect(@good.errors.full_messages).to include("Good state must be other than 0")
+      end
+      it 'delivery_fee_idが0以外では登録できない' do
+        @good.delivery_fee_id = '0'
+        @good.valid?
+        expect(@good.errors.full_messages).to include("Delivery fee must be other than 0")
+      end
+      it 'ship_area_idが0以外では登録できない' do
+        @good.ship_area_id = '0'
+        @good.valid?
+        expect(@good.errors.full_messages).to include("Ship area must be other than 0")
+      end
+      it 'day_idが0以外では登録できない' do
+        @good.day_id = '0'
+        @good.valid?
+        expect(@good.errors.full_messages).to include("Day must be other than 0")
       end
     end
   end
