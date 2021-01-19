@@ -10,7 +10,7 @@
 | first_name         | string              | null: false             |
 | last_name          | string              | null: false             |
 | first_name_hurigana| string              | null: false             |
-| last_name_hurigana | string              | null: false              |
+| last_name_hurigana | string              | null: false             |
 | birthday           | date                | null: false             |
 
 
@@ -25,7 +25,7 @@
 | Column                              | Type       | Options           |
 |-------------------------------------|------------|-------------------|
 | goods_name                          | string     | null: false       |
-| goods_price                         | integer     | null: false       |
+| goods_price                         | integer    | null: false       |
 | goods_text                          | text       | null: false       |
 | category_id                         | integer    | null: false       |
 | good_state_id                       | integer    | null: false       |

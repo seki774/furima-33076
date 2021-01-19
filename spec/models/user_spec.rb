@@ -26,7 +26,7 @@ describe User do
       it 'emailが＠を含まなければ登録できない' do
         @user.email = 'testsample'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Email is invalid")
+        expect(@user.errors.full_messages).to include('Email is invalid')
       end
       it '重複したemailが存在する場合登録できない' do
         @user.save
@@ -43,17 +43,17 @@ describe User do
       it 'passwordが英語のみでは登録できない' do
         @user.password = 'abcdef'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password には英字と数字の両方を含めて設定してください")
+        expect(@user.errors.full_messages).to include('Password には英字と数字の両方を含めて設定してください')
       end
       it 'passwordが数字のみでは登録できない' do
         @user.password = '123456'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password には英字と数字の両方を含めて設定してください")
+        expect(@user.errors.full_messages).to include('Password には英字と数字の両方を含めて設定してください')
       end
       it 'passwordが全角では登録できない' do
         @user.password = '１２３４５６'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password には英字と数字の両方を含めて設定してください")
+        expect(@user.errors.full_messages).to include('Password には英字と数字の両方を含めて設定してください')
       end
       it 'passwordがpassword_confirmationと同じでなければ登録できない' do
         @user.password = '123abc'
@@ -80,7 +80,7 @@ describe User do
       it 'first_nameは漢字、平仮名、カタカナ（全角）でなければ登録できない' do
         @user.first_name = '漢ひカナ'
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name 全角文字を使用してください")
+        expect(@user.errors.full_messages).to include('First name 全角文字を使用してください')
       end
       it 'last_nameが空では登録できない' do
         @user.last_name = ''
@@ -90,7 +90,7 @@ describe User do
       it 'last_nameは漢字、平仮名、カタカナ（全角）でなければ登録できない' do
         @user.last_name = '漢ひカナ'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Last name 全角文字を使用してください")
+        expect(@user.errors.full_messages).to include('Last name 全角文字を使用してください')
       end
       it 'first_name_huriganaが空では登録できない' do
         @user.first_name_hurigana = ''
@@ -100,7 +100,7 @@ describe User do
       it 'first_name_huriganaがカタカナでなければ登録できない' do
         @user.first_name_hurigana = 'かんひかな'
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name hurigana 全角カタカナを使用してください")
+        expect(@user.errors.full_messages).to include('First name hurigana 全角カタカナを使用してください')
       end
       it 'last_name_huriganaが空では登録できない' do
         @user.last_name_hurigana = ''
@@ -110,7 +110,7 @@ describe User do
       it 'last_name_huriganaがカタカナでなければ登録できない' do
         @user.last_name_hurigana = 'かんひかな'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Last name hurigana 全角カタカナを使用してください")
+        expect(@user.errors.full_messages).to include('Last name hurigana 全角カタカナを使用してください')
       end
       it 'birthdayが空では登録できない' do
         @user.birthday = ''
