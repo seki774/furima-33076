@@ -26,7 +26,8 @@ class Good < ApplicationRecord
     validates :day_id
   end
 
-  validates :goods_price ,presence: true, format: { with: /^[0-9]*$/, message: '半角数字を使用してください' }
-
+  validates :goods_price, presence: true, numericality:{ with: /\d/,           message: '半角数字を使用してください' }
+  validates :goods_price, numericality: {greater_than_or_equal_to:  300,  message: 'は300以下にならない'} 
+  validates :goods_price, numericality: {less_than_or_equal_to:  9999999, message: 'は9999999を超えられない' } 
   
 end
