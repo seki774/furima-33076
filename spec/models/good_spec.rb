@@ -55,13 +55,13 @@ describe User do
       end
 
       it 'goods_priceが9999999を超えると登録できない' do
-        @good.goods_price = '10000000'
+        @good.goods_price = 10000000
         @good.valid?
         expect(@good.errors.full_messages).to include('Goods price は9999999を超えられない')
       end
 
       it 'goods_priceが300以下であれば登録できない' do
-        @good.goods_price = '299'
+        @good.goods_price = 299
         @good.valid?
         expect(@good.errors.full_messages).to include('Goods price は300以下にならない')
       end
@@ -71,6 +71,20 @@ describe User do
         @good.valid?
         expect(@good.errors.full_messages).to include('Goods price 半角数字を使用してください')
       end
+
+      it 'goods_priceは半角英語だけでは登録できない' do
+        @good.goods_price = 'abcde'
+        @good.valid?
+        expect(@good.errors.full_messages).to include('Goods price 半角数字を使用してください')
+      end
+
+      it 'goods_priceは半角英数混合では登録できない' do
+        @good.goods_price = 'abc123'
+        @good.valid?
+        expect(@good.errors.full_messages).to include('Goods price 半角数字を使用してください')
+      end
+
+
 
       it 'category_idが0以外では登録できない' do
         @good.category_id = '0'
