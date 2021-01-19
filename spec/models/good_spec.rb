@@ -54,13 +54,12 @@ describe User do
         expect(@good.errors.full_messages).to include("Image can't be blank")
       end
 
-
       it 'goods_priceが9999999を超えると登録できない' do
         @good.goods_price = '10000000'
         @good.valid?
-        expect(@good.errors.full_messages).to include("Goods price は9999999を超えられない")
+        expect(@good.errors.full_messages).to include('Goods price は9999999を超えられない')
       end
-  
+
       it 'goods_priceが300以下であれば登録できない' do
         @good.goods_price = '100'
         @good.valid?
@@ -70,7 +69,7 @@ describe User do
       it 'goods_priceは全角数字では登録できない' do
         @good.goods_price = '５００００'
         @good.valid?
-        expect(@good.errors.full_messages).to include("Goods price 半角数字を使用してください")
+        expect(@good.errors.full_messages).to include('Goods price 半角数字を使用してください')
       end
     end
   end

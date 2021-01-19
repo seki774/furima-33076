@@ -9,7 +9,7 @@ class Good < ApplicationRecord
 
   with_options presence: true do
     validates :goods_name
-    validates :goods_text 
+    validates :goods_text
     validates :category_id
     validates :good_state_id
     validates :delivery_fee_id
@@ -18,7 +18,7 @@ class Good < ApplicationRecord
     validates :image
   end
 
-  with_options numericality:  { other_than: 0 } do
+  with_options numericality: { other_than: 0 } do
     validates :category_id
     validates :good_state_id
     validates :delivery_fee_id
@@ -26,8 +26,7 @@ class Good < ApplicationRecord
     validates :day_id
   end
 
-  validates :goods_price, presence: true, numericality:{ with: /\d/,           message: '半角数字を使用してください' }
-  validates :goods_price, numericality: {greater_than_or_equal_to:  300,  message: 'は300以下にならない'} 
-  validates :goods_price, numericality: {less_than_or_equal_to:  9999999, message: 'は9999999を超えられない' } 
-  
+  validates :goods_price, presence: true, numericality: { with: /\d/, message: '半角数字を使用してください' }
+  validates :goods_price, numericality: { greater_than_or_equal_to: 300, message: 'は300以下にならない' }
+  validates :goods_price, numericality: { less_than_or_equal_to: 9_999_999, message: 'は9999999を超えられない' }
 end
