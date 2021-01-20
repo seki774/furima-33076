@@ -6,6 +6,7 @@ class Good < ApplicationRecord
   belongs_to :delivery_fee
   belongs_to :good_state
   belongs_to :ship_area
+  belongs_to :user
 
   with_options presence: true do
     validates :goods_name
