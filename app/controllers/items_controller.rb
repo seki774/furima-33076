@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
   def index
-    @goods = Good.all
+    @goods = Good.all.order("day_id DESC")
   end
 
   def new
