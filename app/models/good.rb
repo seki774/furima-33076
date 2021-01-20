@@ -30,3 +30,4 @@ class Good < ApplicationRecord
   validates :goods_price, numericality: { greater_than_or_equal_to: 300, message: 'は300以下にならない' }
   validates :goods_price, numericality: { less_than_or_equal_to: 9_999_999, message: 'は9999999を超えられない' }
 end
+
