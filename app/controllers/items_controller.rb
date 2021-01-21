@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :move_to_index, only: [:edit]
-  before_action :params_id, only: [:show, :edit, :update]
+  before_action :params_id, only: [:show, :edit, :update, :destroy]
   def index
     @goods = Good.all.order("created_at DESC")
   end
@@ -29,13 +29,18 @@ class ItemsController < ApplicationController
   end
 
   def update
-
    if @good.update(good_params)
     redirect_to root_path 
     else
       render :edit
     end
   end
+
+  def destroy
+  @good.destroy
+  redirect_to root_path
+  end
+
   
   private
 
