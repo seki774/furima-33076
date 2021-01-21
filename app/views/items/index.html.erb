@@ -131,7 +131,7 @@
     <% if @goods.present?  %>
       <% @goods.each do |good| %>
         <li class='list'>
-          <%= link_to "#" do %>
+          <%= link_to item_path(good.id) do %>
           <div class='item-img-content'>
             <%= image_tag good.image, class: "item-img" %>
 
