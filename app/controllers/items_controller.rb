@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show, :edit]
   before_action :move_to_index, only: [:edit]
   before_action :params_id, only: [:show, :edit, :update]
   def index
@@ -45,8 +45,11 @@ class ItemsController < ApplicationController
   end
 
   def move_to_index
+    if current_user.id != params_id.user.id
       redirect_to action: :index
     end
+  end
+
 
     def params_id
       @good = Good.find(params[:id])
