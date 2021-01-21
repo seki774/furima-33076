@@ -21,6 +21,20 @@ class ItemsController < ApplicationController
   def show
     @good = Good.find(params[:id])
   end
+
+  def edit
+    @good = Good.find(params[:id])
+  end
+
+  def update
+    @good = Good.find(params[:id])    
+    @good.update(good_params)
+   if @good.save 
+    redirect_to root_path
+    else
+      render :new
+    end
+  end
   private
 
   def good_params
