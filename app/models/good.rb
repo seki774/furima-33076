@@ -7,6 +7,8 @@ class Good < ApplicationRecord
   belongs_to :good_state
   belongs_to :ship_area
   belongs_to :user
+  has_one    :purchase_history
+  belongs_to :form
 
   with_options presence: true do
     validates :goods_name
