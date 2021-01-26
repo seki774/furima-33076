@@ -10,6 +10,10 @@ describe PurchaseHistory do
       it '必要な情報を適切に入力すると、商品の購入ができる' do
         expect(@purchase).to be_valid
       end
+
+      it 'ビル名がなくても登録できる' do
+      
+      end
     end
 
     context '商品購入がうまくいかないとき' do

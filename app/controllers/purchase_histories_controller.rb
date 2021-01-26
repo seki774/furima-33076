@@ -1,17 +1,15 @@
 class PurchaseHistoriesController < ApplicationController
   before_action :authenticate_user!, only: [:index, :create]
   before_action :move_to_index, only: [:create]
-
+  before_action :good_params, only:[:index, :create]
   def index
     @purchase = Form.new
-    @good = Good.find(params[:item_id])
   end
 
 
 
   def create
     @purchase = Form.new(form_params)
-    @good = Good.find(params[:item_id])
     if @purchase.valid?
       pay_item
       redirect_to root_path
@@ -28,7 +26,7 @@ class PurchaseHistoriesController < ApplicationController
   end
 
   def pay_item
-    Payjp.api_key = 'sk_test_e2df649dd28e555404d3aa63' 
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
     Payjp::Charge.create(
       amount: @good.goods_price, 
       card: form_params[:token],    
@@ -39,4 +37,9 @@ class PurchaseHistoriesController < ApplicationController
   def move_to_index
     redirect_to root_path if current_user.id != params_id.user.id
   end
+
+  def good_params
+    @good = Good.find(params[:item_id])
+  end
+
 end
