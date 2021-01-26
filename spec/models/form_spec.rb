@@ -41,10 +41,16 @@ describe  PurchaseHistory do
         @purchase.valid?
         expect(@purchase.errors.full_messages).to include("Phone number can't be blank")
       end
+
+      it 'tokenが空では登録できない' do
+        @purchase.token = ''
+        @purchase.valid?
+        expect(@purchase.errors.full_messages).to include("Token can't be blank")
+      end
       
 
       it 'postal_codeにハイフンがなければ購入できない' do
-        @purchase.postal_code = '111-1111'
+        @purchase.postal_code = '1111111'
         @purchase.valid?
         expect(@purchase.errors.full_messages).to include("Postal code 郵便番号にはハイフンが必要であること")
       end
