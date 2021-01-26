@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   before_action :move_to_index, only: [:edit, :destroy]
   before_action :params_id, only: [:show, :edit, :update, :destroy]
   def index
-    @goods = Good.all.order("created_at DESC")
+    @goods = Good.all.order('created_at DESC')
   end
 
   def new
@@ -19,29 +19,25 @@ class ItemsController < ApplicationController
     end
   end
 
-
   def show
-    
   end
 
   def edit
-    
   end
 
   def update
-   if @good.update(good_params)
-    redirect_to root_path 
+    if @good.update(good_params)
+      redirect_to root_path
     else
       render :edit
     end
   end
 
   def destroy
-  @good.destroy
-  redirect_to root_path
+    @good.destroy
+    redirect_to root_path
   end
 
-  
   private
 
   def good_params
@@ -50,14 +46,10 @@ class ItemsController < ApplicationController
   end
 
   def move_to_index
-    if current_user.id != params_id.user.id
-      redirect_to action: :index
-    end
+    redirect_to action: :index if current_user.id != params_id.user.id
   end
 
-
-    def params_id
-      @good = Good.find(params[:id])
+  def params_id
+    @good = Good.find(params[:id])
   end
 end
-

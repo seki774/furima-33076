@@ -1,7 +1,6 @@
 require 'rails_helper'
 
-
-describe  PurchaseHistory do
+describe PurchaseHistory do
   before do
     @purchase = FactoryBot.build(:form)
   end
@@ -14,7 +13,6 @@ describe  PurchaseHistory do
     end
 
     context '商品購入がうまくいかないとき' do
-
       it 'postal_codeが空だと登録できない' do
         @purchase.postal_code = ''
         @purchase.valid?
@@ -47,27 +45,24 @@ describe  PurchaseHistory do
         @purchase.valid?
         expect(@purchase.errors.full_messages).to include("Token can't be blank")
       end
-      
 
       it 'postal_codeにハイフンがなければ購入できない' do
         @purchase.postal_code = '1111111'
         @purchase.valid?
-        expect(@purchase.errors.full_messages).to include("Postal code 郵便番号にはハイフンが必要であること")
+        expect(@purchase.errors.full_messages).to include('Postal code 郵便番号にはハイフンが必要であること')
       end
 
       it 'phone_numberが11文字いないでなければ登録できない' do
         @purchase.phone_number = '123456789123'
         @purchase.valid?
-        expect(@purchase.errors.full_messages).to include("Phone number is too long (maximum is 11 characters)")
+        expect(@purchase.errors.full_messages).to include('Phone number is too long (maximum is 11 characters)')
       end
-
 
       it 'ship_area_idが0以外では登録できない' do
         @purchase.ship_area_id = '0'
         @purchase.valid?
-        expect(@purchase.errors.full_messages).to include("Ship area must be other than 0")
+        expect(@purchase.errors.full_messages).to include('Ship area must be other than 0')
       end
-     
     end
   end
 end
