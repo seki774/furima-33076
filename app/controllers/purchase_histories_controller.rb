@@ -1,21 +1,20 @@
 class PurchaseHistoriesController < ApplicationController
+  before_action :authenticate_user!, only: [:index, :create]
+  before_action :move_to_index, only: [:create]
+
   def index
-    # フォームオブジェクトのインスタンスを生成し、インスタンス変数に代入する
     @purchase = Form.new
     @good = Good.find(params[:item_id])
   end
 
-  # def new
-  #  @form =  Form.new(params[:id])
-  # end
+
 
   def create
     @purchase = Form.new(form_params)
     @good = Good.find(params[:item_id])
     if @purchase.valid?
       pay_item
-      # @purchase.save
-      redirect_to action: :index
+      redirect_to root_path
     else
       render action: :index
     end
@@ -29,11 +28,15 @@ class PurchaseHistoriesController < ApplicationController
   end
 
   def pay_item
-    Payjp.api_key = 'sk_test_e2df649dd28e555404d3aa63' # 自身のPAY.JPテスト秘密鍵を記述しましょう
+    Payjp.api_key = 'sk_test_e2df649dd28e555404d3aa63' 
     Payjp::Charge.create(
-      amount: @good.goods_price, # 商品の値段
-      card: form_params[:token],    # カードトークン
+      amount: @good.goods_price, 
+      card: form_params[:token],    
       currency: 'jpy'
     )
+  end
+
+  def move_to_index
+    redirect_to root_path if current_user.id != params_id.user.id
   end
 end
