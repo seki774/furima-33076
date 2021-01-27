@@ -79,8 +79,8 @@ describe PurchaseHistory do
         expect(@purchase.errors.full_messages).to include('Phone number is too long (maximum is 11 characters)')
       end
 
-      it 'ship_area_idが0以外では登録できない' do
-        @purchase.ship_area_id = '0'
+      it 'ship_area_idが0では登録できない' do
+        @purchase.ship_area_id = 0
         @purchase.valid?
         expect(@purchase.errors.full_messages).to include('Ship area must be other than 0')
       end
