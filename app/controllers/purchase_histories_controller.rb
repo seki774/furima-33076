@@ -1,5 +1,5 @@
 class PurchaseHistoriesController < ApplicationController
-  before_action :authenticate_user!, only: [:index]
+  before_action :authenticate_user!, only: [:index, :create]
   before_action :good_params, only:[:index, :create, :move_to_index]
   before_action :move_to_index, only: [:index, :create]
   
