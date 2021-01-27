@@ -15,8 +15,8 @@ class Form
   end
 
   validates :postal_code, format: { with: /\A\d{3}-\d{4}\z/, message: '郵便番号にはハイフンが必要であること' }
-  validates :phone_number, length: { maximum: 11 }
-
+  # validates :phone_number, length: { maximum: 11 }
+  validates :phone_number,  length: { maximum: 11 }, numericality: { with: /\d/, message: '半角数字を使用してください' }
   with_options numericality: { other_than: 0 } do
     validates :ship_area_id
   end

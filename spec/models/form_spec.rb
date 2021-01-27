@@ -84,6 +84,11 @@ describe PurchaseHistory do
         @purchase.valid?
         expect(@purchase.errors.full_messages).to include('Ship area must be other than 0')
       end
+      it 'phone_numberは半角英数混合では登録できない' do
+        @purchase.phone_number = 'abc123'
+        @purchase.valid?
+        expect(@purchase.errors.full_messages).to include('Phone number 半角数字を使用してください')
+      end
     end
   end
 end
