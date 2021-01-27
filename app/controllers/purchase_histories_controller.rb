@@ -5,8 +5,6 @@ class PurchaseHistoriesController < ApplicationController
   
   def index
     @purchase = Form.new
-
-    #redirect_to root_path if current_user.id == @good.user_id || @purchase.user.id
   end
 
 
@@ -44,7 +42,7 @@ class PurchaseHistoriesController < ApplicationController
   def move_to_index
     redirect_to root_path if current_user.id != @good.user_id || @good.purchase_history == "1" 
   end
-  # @tweet.user.nickname
+
 
   def good_params
     @good = Good.find(params[:item_id])

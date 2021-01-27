@@ -10,6 +10,8 @@ class Form
     validates :house_number
     validates :phone_number
     validates :token
+    validates :user_id
+    validates :good_id
   end
 
   validates :postal_code, format: { with: /\A\d{3}-\d{4}\z/, message: '郵便番号にはハイフンが必要であること' }

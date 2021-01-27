@@ -51,6 +51,18 @@ describe PurchaseHistory do
         expect(@purchase.errors.full_messages).to include("Token can't be blank")
       end
 
+      it 'user_idが空では登録できない' do
+        @purchase.user_id = ''
+        @purchase.valid?
+        expect(@purchase.errors.full_messages).to include("User can't be blank")
+      end
+
+      it 'good_idが空では登録できない' do
+        @purchase.good_id = ''
+        @purchase.valid?
+        expect(@purchase.errors.full_messages).to include("Good can't be blank")
+      end
+
       it 'postal_codeにハイフンがなければ購入できない' do
         @purchase.postal_code = '1111111'
         @purchase.valid?
