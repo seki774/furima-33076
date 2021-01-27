@@ -136,11 +136,11 @@
             <%= image_tag good.image, class: "item-img" %>
 
             <%# 商品が売れていればsold outを表示しましょう %>
+          <% if  good.purchase_history %>
             <div class='sold-out'>
-            <%# if()%>
               <span>Sold Out!!</span>
-              <%#end%>
             </div>
+          <% end %>
             <%# //商品が売れていればsold outを表示しましょう %>
             
           </div>

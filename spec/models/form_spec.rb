@@ -12,7 +12,8 @@ describe PurchaseHistory do
       end
 
       it 'ビル名がなくても登録できる' do
-      
+        @purchase.bill = ""
+        expect(@purchase).to be_valid
       end
     end
 

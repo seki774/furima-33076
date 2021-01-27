@@ -46,10 +46,10 @@ class ItemsController < ApplicationController
   end
 
   def move_to_index
-    redirect_to action: :index if current_user.id != params_id.user.id
+    redirect_to root_path if current_user.id != params_id.user.id || @good.purchase_history == "1" 
+   end
   end
 
   def params_id
     @good = Good.find(params[:id])
   end
-end

@@ -1,6 +1,6 @@
 class Form
   include ActiveModel::Model
-  attr_accessor :postal_code, :ship_area_id, :bill, :city, :house_number, :phone_number, :token
+  attr_accessor :postal_code, :ship_area_id, :bill, :city, :house_number, :phone_number, :token, :user_id, :good_id
 
   # ここにバリデーションの処理を書く
   with_options presence: true do
@@ -20,7 +20,11 @@ class Form
   end
 
   def save
+    purchase_history = PurchaseHistory.create(good_id: good_id, user_id: user_id)
+
     Address.create(postal_code: postal_code, ship_area_id: ship_area_id, bill: bill, city: city, house_number: house_number,
-                   phone_number: phone_number)
+                   phone_number: phone_number, purchase_history_id: purchase_history.id)
+    
+
   end
 end
