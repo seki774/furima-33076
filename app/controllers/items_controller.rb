@@ -46,7 +46,7 @@ class ItemsController < ApplicationController
   end
 
   def move_to_index
-    redirect_to root_path if current_user.id != params_id.user.id || @good.purchase_history == "1" 
+    redirect_to root_path if current_user.id != params_id.user.id || @good.purchase_history.present?
    end
   end
 

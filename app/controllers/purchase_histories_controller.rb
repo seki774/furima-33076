@@ -1,6 +1,6 @@
 class PurchaseHistoriesController < ApplicationController
   before_action :authenticate_user!, only: [:index, :create]
-  before_action :good_params, only:[:index, :create, :move_to_index]
+  before_action :good_params, only:[:index, :create]
   before_action :move_to_index, only: [:index, :create]
   
   def index
@@ -40,7 +40,7 @@ class PurchaseHistoriesController < ApplicationController
   end
 
   def move_to_index
-    redirect_to root_path if current_user.id != @good.user_id || @good.purchase_history.present?
+    redirect_to root_path if current_user.id == @good.user_id || @good.purchase_history.present?
   end
 
 
