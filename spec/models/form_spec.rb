@@ -2,7 +2,11 @@ require 'rails_helper'
 
 describe PurchaseHistory do
   before do
-    @purchase = FactoryBot.build(:form)
+
+    @good = FactoryBot.create(:good)
+    @user = FactoryBot.create(:user)
+    @purchase = FactoryBot.build(:form, good_id: @good.id, user_id: @user.id )
+    sleep 1
   end
 
   describe '商品購入機能' do

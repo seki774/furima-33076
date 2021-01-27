@@ -40,7 +40,7 @@ class PurchaseHistoriesController < ApplicationController
   end
 
   def move_to_index
-    redirect_to root_path if current_user.id != @good.user_id || @good.purchase_history == "1" 
+    redirect_to root_path if current_user.id != @good.user_id || @good.purchase_history.present?
   end
 
 
